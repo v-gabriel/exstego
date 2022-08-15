@@ -1,29 +1,8 @@
 import os
-from datetime import date
 import pyexiv2
 import shortuuid
 from helpers.enums import MetadataTypes, MetadataHandlerResults, MetadataFileChangeType
 from helpers.logger import MessageHelper
-
-
-# ========================================================================================
-# -> Manipulate file metadata <-
-
-# ! Info
-# Wrapper based on pyexif2 library
-
-# ! pyexif2 documentation
-# https://github.com/LeoHsiao1/pyexiv2/blob/master/docs/Tutorial.md
-
-# ! Notes
-# Make sure to alter only existing tags, list at: https://exiv2.org/metadata.html
-# Only string values allowed, check if tag supports string file_type embedding
-# Only XMP allows custom namespaces and tag keys: Xmp.{customNamespace}.{customTagKey}
-
-# TODO:
-# Make DATETIME unchanged if tags were edited
-# Make edits possible by checking data types and converting string to file_type used
-# ========================================================================================
 
 
 class MetadataHandler:
@@ -32,10 +11,6 @@ class MetadataHandler:
 
         with open(fr'{src}', 'rb+') as f:
             self.__image = pyexiv2.ImageData(f.read())
-        # TODO: choose different encoding if not supported
-        # self.__image  = pyexiv2.Image(fileDir, encoding='utf-8')
-        # self.__image  = pyexiv2.Image(fileDir, encoding='GBK')
-        # self.__image  = pyexiv2.Image(fileDir, encoding='ISO-8859-1')
 
         self.folder = folder + '/MetadataHandler'
 
@@ -191,49 +166,6 @@ class MetadataHandler:
                     temp = f"{title}{temp}\n"
                 formatted_tags[tag_type.value] = temp
 
-            # tags = ''
-            # title = tags + f"{MetadataTypes.XMP.value}: " + '\n\n'
-            # tags = title
-            # for key in xmpTags:
-            #     tags = tags + f"{key}: {xmpTags[key]}"
-            #     tags = tags + '\n'
-            # if tags == title or tags == '':
-            #     xmpTagsStr = title + no_tags_found
-            # else:
-            #     xmpTagsStr = tags + '\n'
-            #
-            # tags = ''
-            # title = tags + f"{MetadataTypes.EXIF.value}: " + '\n\n'
-            # tags = title
-            # for key in exifTags or tags == '':
-            #     tags = tags + f"{key}: {exifTags[key]}"
-            #     tags = tags + '\n'
-            # if tags == title or tags == '':
-            #     exifTagsStr = title + no_tags_found
-            # else:
-            #     exifTagsStr = tags + '\n'
-            #
-            # tags = ''
-            # title = tags + f"{MetadataTypes.IPTC.value}: " + '\n\n'
-            # tags = title
-            # for key in iptcTags:
-            #     tags = tags + f"{key}: {iptcTags[key]}"
-            #     tags = tags + '\n'
-            # if tags == title or tags == '':
-            #     iptcTagsStr = title + no_tags_found
-            # else:
-            #     iptcTagsStr = tags + '\n'
-            #
-            # tags = ''
-            # title = tags + f"{MetadataTypes.COMMENT.value}:" + '\n\n'
-            # tags = title
-            # tags = tags + comment
-            # tags = tags + '\n'
-            # if tags == title or tags == '':
-            #     commentStr = title + no_comment_found
-            # else:
-            #     commentStr = tags + '\n'
-
             tagsDict = {MetadataTypes.XMP.value: formatted_tags[MetadataTypes.XMP.value],
                         MetadataTypes.EXIF.value: formatted_tags[MetadataTypes.EXIF.value],
                         MetadataTypes.IPTC.value: formatted_tags[MetadataTypes.IPTC.value],
@@ -276,21 +208,3 @@ class MetadataHandler:
             MessageHelper.success(f"Image saved.", self.__identifier)
         except Exception as exception:
             MessageHelper.error("Error while saving image.", self.__identifier, exception)
-
-
-# fileSrc = 'D:\\Program Files\\Steganography\\ExstegoV02\\resources\\duck.jpg'
-# today = date.today()
-# time = today.strftime("%b_%d_%Y")
-# baseFolder = '../ATTACKS' + '/' + time + '__' + shortuuid.ShortUUID().uuid().title()
-#
-# mh = MetadataHandler(baseFolder, fileSrc)
-#
-# mh.scramble_tags()
-#
-# print(mh.results.destroyed_tags)
-#
-
-# mh2 = MetadataHandler(f"baseFolder\\{shortuuid.ShortUUID().uuid().title()}",
-#                       f"{baseFolder}\\MetadataHandler\\image_w_altered_metadata.png")
-#
-# print(mh2.tags)

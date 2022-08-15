@@ -1,10 +1,6 @@
 import os
-from datetime import date
-
 import matplotlib.pyplot as plot
 import cv2
-import shortuuid
-
 from helpers.enums import FileOriginType, HistogramAnalyzerResults
 from helpers.logger import MessageHelper
 
@@ -86,16 +82,3 @@ class HistogramAnalyzer:
                 MessageHelper.error("An error has occurred... please try again later", self.__identifier, exception)
         else:
             MessageHelper.log("File(s) not provided... aborting...", self.__identifier)
-
-
-# fileSrc = 'D:\\Program Files\\Steganography\\ExstegoV02\\resources\\duck.jpg'
-# stegoSrc = "D:\\Program Files\\Steganography\\ExstegoV02\\ATTACKS\\Aug_08_2022__T6Fxw7Epe42Ee7Wvmmmbkz\\LSBHandler\\destroyed_50.0percent.png"
-#
-#
-# today = date.today()
-# time = today.strftime("%b_%d_%Y")
-# baseFolder = '../ATTACKS' + '/' + time + '__' + shortuuid.ShortUUID().uuid().title()
-#
-# ha = HistogramAnalyzer(baseFolder, stegoSrc, fileSrc)
-# ha.analyze()
-# print(ha.equality_percentage)

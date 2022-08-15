@@ -173,10 +173,10 @@ class BitPlaneAnalyzer:
                 bit_planes_to_keep = bit_planes_to_keep[:to_left] + '1' + bit_planes_to_keep[from_right:8]
 
             bit_planes_to_keep = bit_planes_to_keep.lstrip('0')
-            print(bit_planes_to_keep)
+
             binOp = format(int(bit_planes_to_keep, 2), '08b')[0:8]
             intOp = int(binOp, 2)
-            print(intOp)
+
             extracted = (data[..., 0] ^ data[..., 1] ^ data[..., 2]) & intOp
 
             fig = plot.imshow(extracted)

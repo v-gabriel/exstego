@@ -1,28 +1,10 @@
 import os
 import random
 from copy import deepcopy
-from datetime import date
-from gettext import gettext
-
-import cv2
 import numpy as np
-import shortuuid
 from PIL import Image
 from helpers.enums import ColorType, LSBEmbedPixelOption, LSBHandlerResults
 from helpers.logger import MessageHelper
-
-
-# ====================================================================================================
-# -> Perform LSB steganography <-
-#   - hide message, read LSBs or destroy a hidden message
-
-# ! Notes
-# 2 embed options:
-#   - SEQUENTIAL: embedding starts from beginning to end, dependant on message length
-#   - SCATTER: embedding starts from beginning, certain pixels are skipped (step embedding)
-# percentage parameter determines how much % of the image will be embedded over
-# if the message size is less than wanted embedding size, randomized bits will be added to message end
-# ====================================================================================================
 
 
 class LSBHandler:
@@ -114,15 +96,9 @@ class LSBHandler:
         b_message = ''.join([format(ord(i), "08b") for i in message])
         embed_percentage = float(float(len(b_message)) / float(self.__total_pixels))
 
-        print(f"Total pixels: {self.__total_pixels}")
-        print(f"Bits to cover: {len(b_message)}")
-        print(f"Wanted percentage: {wanted_percentage}")
-        print(f"Covered percentage: {embed_percentage}")
-
         if wanted_percentage is not None:
             if embed_percentage > wanted_percentage:
                 bits_to_keep = int(wanted_percentage * self.__total_pixels)
-                print(bits_to_keep)
                 b_message = b_message[0:bits_to_keep]
                 embed_percentage = wanted_percentage
             elif embed_percentage < wanted_percentage:
@@ -131,9 +107,6 @@ class LSBHandler:
                 fill_length = total_pixels_to_cover - len(b_message)
                 b_message_fill = f'{random.getrandbits(fill_length):=0{fill_length}b}'
                 b_message += b_message_fill
-
-        print(len(b_message))
-        print(f"New covered percentage: {float(len(b_message) / self.__total_pixels)}")
 
         try:
             MessageHelper.log(f"Performing LSB embedding for {str(embed_percentage)}.", self.__identifier)
@@ -176,11 +149,7 @@ class LSBHandler:
                                   self.__identifier)
 
             colors = self.__setup_colors(colors_to_read)
-            #req_bits = int(((percentage / len(colors)) * self.__total_pixels) + 0.5)
             req_bits = int((percentage * self.__total_pixels) + 0.5)
-
-            print(f"Req: ({percentage}/{len(colors)})*{self.__total_pixels}={req_bits}")
-            print(percentage)
 
             hidden_bits = ''
             index = 0
@@ -188,10 +157,8 @@ class LSBHandler:
                 match embed_option:
                     case LSBEmbedPixelOption.SCATTER.value:
                         pixel_index = int(p * float(1 / (percentage / len(colors))))
-                        #print(pixel_index)
                     case LSBEmbedPixelOption.SEQUENTIAL.value:
                         pixel_index = p
-                        #print(pixel_index)
                     case _:
                         raise Exception("Invalid embedding option. Please retry or reset parameters.")
                 if index < req_bits:
@@ -199,37 +166,12 @@ class LSBHandler:
                         for c in colors:
                             hidden_bits += (bin(self.__array[pixel_index][c])[2:][-1])
                             index += 1
-                            # if req_bits >= len(hidden_bits):
-                            #     break
                     else:
                         break
                 else:
                     break
 
-            # hidden_bits = ""
-            # for p in range(self.__total_pixels):
-            #     match embed_option:
-            #         case LSBEmbedPixelOption.SCATTER:
-            #             pixel_index = int(p * float(1 / percentage))
-            #             if pixel_index >= len(self.__array):
-            #                 break
-            #             else:
-            #                 for c in colors:
-            #                     hidden_bits += (bin(self.__array[pixel_index][c])[2:][-1])
-            #         case LSBEmbedPixelOption.SEQUENTIAL:
-            #             for c in colors:
-            #                 hidden_bits += (bin(self.__array[p][c])[2:][-1])
-            #                 current_percentage = len(hidden_bits) / self.__total_pixels
-            #                 if current_percentage >= percentage:
-            #                     break
-            #             current_percentage = len(hidden_bits) / self.__total_pixels
-            #             if current_percentage >= percentage:
-            #                 break
-            #         case _:
-            #             raise Exception("Invalid embedding option. Please retry or reset parameters.")
-
             hidden_bits = [hidden_bits[i:i + 8] for i in range(0, len(hidden_bits), 8)]
-            #print(hidden_bits)
 
             message = ""
             for i in range(len(hidden_bits)):
@@ -285,48 +227,3 @@ class LSBHandler:
                                f"Root folder: {self.folder}", self.__identifier)
         except Exception as exception:
             MessageHelper.error("Error while performing LSB destruction.", self.__identifier, exception)
-
-
-# def replace_pallete(imageSrc):
-#     img = cv2.imread(imageSrc, cv2.IMREAD_GRAYSCALE)
-#
-#     folder = baseFolder + "/VisualAttacks/ReplacementPallete"
-#     os.makedirs(folder, exist_ok=True)
-#
-#     cv2.imwrite(folder + "/gray.png", img)
-#
-#     for i in range(len(img)):
-#         for j in range(len(img[i])):
-#             if img[i][j] % 2 == 0:
-#                 img[i][j] = 0
-#             else:
-#                 img[i][j] = 255
-#
-#     cv2.imwrite(folder + "/filtered.png", img)
-
-
-# def get_text(fn):
-#     file = open(fn, 'r')
-#     return ''.join([line for line in file])
-#
-#
-# fileSrc = 'D:\\Program Files\\Steganography\\ExstegoV02\\resources\\duck.jpg'
-# src2 = "D:\\Program Files\\Steganography\\ExstegoV02\\resources\\white_duck.jpg"
-#
-# today = date.today()
-# time = today.strftime("%b_%d_%Y")
-# baseFolder = '../ATTACKS' + '/' + time + '__' + shortuuid.ShortUUID().uuid().title()
-#
-# dls = LSBHandler(baseFolder, fileSrc)
-#
-# text_src = '../resources/to_hide.txt'
-# hidden_text = f"{get_text(text_src)}"
-#print(hidden_text)
-
-#dls.hide_message(hidden_text, LSBEmbedPixelOption.SEQUENTIAL, [ColorType.BLUE], 0.0001)
-# dls.extract_message([ColorType.RED], LSBEmbedPixelOption.SEQUENTIAL, 0.0000025680328066191043)
-#dls.extract_message([ColorType.BLUE], LSBEmbedPixelOption.SEQUENTIAL, 0.0006)
-#dls.destroy_message(LSBEmbedPixelOption.SEQUENTIAL, [ColorType.BLUE, ColorType.GREEN, ColorType.RED], 0.5)
-#dls.extract_message([ColorType.BLUE], LSBEmbedPixelOption.SEQUENTIAL, 0.0001)
-
-# replace_pallete(src2)
