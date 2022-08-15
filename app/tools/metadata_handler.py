@@ -186,10 +186,6 @@ class MetadataHandler:
 
             os.makedirs(self.folder, exist_ok=True)
 
-            image.modify_exif(
-                {'Exif.Photo.DateTimeOriginal': image.read_exif()['Exif.Photo.DateTimeOriginal']}
-            )
-
             img_src = f"{self.folder}/{change_type}_metadata.png"
             with open(img_src, "wb") as newFile:
                 newFile.write(image.get_bytes())
