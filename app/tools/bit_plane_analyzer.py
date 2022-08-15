@@ -1,12 +1,8 @@
 import os
-from datetime import date
-
-import shortuuid
 from PIL import Image
 import matplotlib.pyplot as plot
 import cv2
 import numpy as np
-
 from helpers.enums import BPCSAnalyzerResults, ColorType, FileOriginType
 from helpers.logger import MessageHelper
 
@@ -27,7 +23,6 @@ class BitPlaneAnalyzer:
         return self.__results
 
     def __save_bit_planes(self, image, dest, colorType, fileOriginType, bit_planes_to_split=None):
-        print("Gotten bit planes:" + str(bit_planes_to_split))
         if bit_planes_to_split is None:
             bit_planes_to_split = [1, 2, 3, 4, 5, 6, 7, 8]
         try:
@@ -83,8 +78,6 @@ class BitPlaneAnalyzer:
                 image = cv2.imread(self.stegoImageSrc)
             case _:
                 raise Exception("Invalid file origin.")
-
-        print("Gotten bit planes:" + str(bit_planes_to_split))
 
         try:
             MessageHelper.log(f"Separating color channels...\n"
@@ -205,40 +198,3 @@ class BitPlaneAnalyzer:
                                 f"Bit planes: {bit_planes_to_overlap}",
                                 self.__identifier,
                                 exception)
-
-    # def analyze(self):
-    #     try:
-    #         MessageHelper.log("Performing bit plane analysis...", self.__identifier)
-    #         if self.__originalImage is not None or self.__stegoImage is not None:
-    #             if self.__originalImage is not None:
-    #                 self.separate_channels(self.__originalImage, FileOriginType.ORIGINAL.value)
-    #                 self.overlap_bit_planes(self.originalImageSrc, FileOriginType.ORIGINAL.value)
-    #             else:
-    #                 MessageHelper.info("Original file not provided... skipping step", self.__identifier)
-    #             if self.__stegoImage is not None:
-    #                 self.separate_channels(self.__stegoImage, FileOriginType.STEGO.value)
-    #                 self.overlap_bit_planes(self.stegoImageSrc, FileOriginType.STEGO.value)
-    #             else:
-    #                 MessageHelper.info("Stego file not provided... skipping step", self.__identifier)
-    #             MessageHelper.info(f"File(s) analyzed successfully"
-    #                                f"\nRoot folder: {self.folder}", self.__identifier)
-    #         else:
-    #             MessageHelper.info("No files selected... please try again later", self.__identifier)
-    #     except Exception as exception:
-    #         MessageHelper.error("An error has occurred... please try again later", self.__identifier, exception)
-
-# bit_planes_to_overlapp = [1, 4, 7, 8, 3]
-# bit_planes_to_keepp = format(int('00000000', 2), '08b')[0:8]
-# for planee in bit_planes_to_overlapp:
-#     to_leftt = 8 - planee
-#     from_rightt = to_leftt + 1
-#     bit_planes_to_keepp = bit_planes_to_keepp[:to_leftt] + '1' + bit_planes_to_keepp[from_rightt:8]
-#
-# print(bit_planes_to_keepp)
-# today = date.today()
-# time = today.strftime("%b_%d_%Y")
-# baseFolder = '../ATTACKS' + '/' + time + '__' + shortuuid.ShortUUID().uuid().title()
-#
-# fileSrc = 'D:\\Program Files\\Steganography\\ExstegoV02\\resources\\cat.png'
-# bp = BitPlaneAnalyzer(baseFolder, fileSrc)
-# bp.overlap_bit_planes()

@@ -1142,24 +1142,13 @@ if __name__ == "__main__":
                             )
 
                             o_tags = ''
-                            o_height = 0
                             d_tags = ''
-                            d_height = 0
                             for key in results.original_tags:
                                 o_tags += results.original_tags[key]
-                                for line in results.original_tags[key].splitlines():
-                                    o_height += 20
                             for key in results.destroyed_tags:
                                 d_tags += results.destroyed_tags[key]
-                                for line in results.destroyed_tags[key].splitlines():
-                                    d_height += 20
 
-                            if o_height > d_height:
-                                height = o_height
-                            else:
-                                height = d_height
                             tags_container = self.__init_horizontal_text_widget(
-                                height=height,
                                 results=[o_tags, d_tags],
                                 halign="left",
                                 valign="top"
@@ -1175,13 +1164,9 @@ if __name__ == "__main__":
                             )
 
                             tags = ''
-                            height = 0
                             for key in results.original_tags:
                                 tags += results.original_tags[key]
-                                for line in results.original_tags[key].splitlines():
-                                    height += 20
                             tags_container = self.__init_horizontal_text_widget(
-                                height=height,
                                 results=[tags],
                                 halign="left",
                             )
@@ -1202,7 +1187,6 @@ if __name__ == "__main__":
                     )
 
                     histogram_origin_titles = self.__init_horizontal_text_widget(
-                        height=50,
                         results=[f"{key}" for key in results.histogram_src]
                     )
 
@@ -1236,7 +1220,6 @@ if __name__ == "__main__":
                             for line in results.extracted_text.splitlines():
                                 height += 4.2
                             message_container = self.__init_horizontal_text_widget(
-                                height=height,
                                 results=[
                                     results.extracted_text
                                 ],
@@ -1339,25 +1322,27 @@ if __name__ == "__main__":
                                           results,
                                           halign="center",
                                           valign="top",
-                                          height=50,
                                           ):
+            base_height = 100
             container = MDBoxLayout(
                 orientation="horizontal",
                 size_hint_y=None,
-                size_hint_x=1,
-                height=dp(height),
+                minimum_height=dp(base_height),
             )
             for result in results:
-                container.add_widget(
-                    MDLabel(
-                        size_hint_y=1,
-                        size_hint_x=1,
+                widget = MDLabel(
+                        size_hint_y=None,
                         halign=halign,
                         valign=valign,
-                        text_size=container.size,
+                        height=dp(base_height),
                         text=result
                     )
+                widget.bind(
+                    texture_size=lambda x, y: {
+                        self.app.set_child_parent_widget_height(x, y[1])
+                    }
                 )
+                container.add_widget(widget)
 
             return container
 
@@ -1507,6 +1492,8 @@ if __name__ == "__main__":
 
             MessageHelper.src = self.base_folder
             # NOTE
+            # logger can be disabled
+            # MessageHelper.to_print = False
             # if the app is run using a environment supporting termcolor library (like PyCharm), set to True
             # MessageHelper.is_colored_logger = True
 
@@ -1703,8 +1690,15 @@ if __name__ == "__main__":
             file = open(filename, 'r')
             return ''.join([line for line in file])
 
-        def __set_parent_widget_height(self, parent: Widget, height):
-            parent.height = height
+        def set_child_parent_widget_height(self, child: Widget, height):
+            child.height = height
+
+            parent: MDBoxLayout = child.parent
+            max_height = height
+            for c in parent.children:
+                if c.height > max_height:
+                    max_height = c.height
+            parent.height = max_height
         # endregion
 
         # region Input widgets
@@ -1783,7 +1777,7 @@ if __name__ == "__main__":
             )
             widget.bind(
                 height=lambda x, y: {
-                    self.__set_parent_widget_height(x.parent, y)
+                    self.set_child_parent_widget_height(x, y)
                 }
             )
 
