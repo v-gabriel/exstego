@@ -1,0 +1,10 @@
+#[Log]#
+[BitPlaneAnalyzer]
+Overlapping bit planes...
+Bit planes: [1, 2, 3]
+
+#[Success]#
+[BitPlaneAnalyzer]
+Bit planes overlapped successfully.
+Bit planes: [1, 2, 3]
+

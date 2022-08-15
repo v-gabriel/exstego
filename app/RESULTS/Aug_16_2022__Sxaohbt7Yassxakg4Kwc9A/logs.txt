@@ -1,0 +1,48 @@
+#[Log]#
+[MetadataHandler]
+Scrambling tags...
+
+#[Log]#
+[MetadataHandler]
+[Destroyed] Reading all tags...
+
+#[Success]#
+[MetadataHandler]
+[Destroyed] Tags read.
+
+#[Log]#
+[MetadataHandler]
+[Original] Reading all tags...
+
+#[Success]#
+[MetadataHandler]
+[Original] Tags read.
+
+#[Log]#
+[MetadataHandler]
+[Destroyed] Saving image...
+
+#[Log]#
+[MetadataHandler]
+[Original] Reading all tags...
+
+#[Success]#
+[MetadataHandler]
+[Original] Tags read.
+
+#[Success]#
+[MetadataHandler]
+Image saved.
+
+#[Success]#
+[MetadataHandler]
+Tags scrambled.
+
+#[Log]#
+[MetadataHandler]
+[Original] Reading all tags...
+
+#[Success]#
+[MetadataHandler]
+[Original] Tags read.
+

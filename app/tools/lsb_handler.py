@@ -186,6 +186,16 @@ class LSBHandler:
             text_file = open(destination + filename, "w", encoding="utf-8")
             n = text_file.write(message)
             text_file.close()
+
+            color_names = []
+            for c in colors_to_read:
+                color_names.append(c)
+            colors_description = "Colors used: " + str(color_names)
+            embedding_description = f"Embedding description:{embed_option}"
+
+            MessageHelper.success(f"Extraction for {str(percentage * 100)}% successfully completed!\n"
+                                  f"Description: \n{embedding_description}\n{colors_description}\n"
+                                  f"Root folder: {self.folder}", self.__identifier)
         except Exception as exception:
             MessageHelper.error("Error while performing LSB extraction.", self.__identifier, exception)
 
