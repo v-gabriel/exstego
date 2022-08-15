@@ -13,11 +13,6 @@ Demonstrates the flow of some attacks and the process of extracting and destroyi
 
 Logs and results are saved in the folder relative to the app: *./RESULTS/...*
 
-Console logging can be disabled in code:
-
-<img src="images/demo/logger-disable-print.png" height=auto width=200>
-
-<br>
 
 **LSB steganography**
 
@@ -100,7 +95,13 @@ Extended to choose custom planes to overlap.
 
 ## Demo
 
-TODO
+**Notes**
+
+Console logging can be disabled in code (./app/exstego.py):
+
+<img src="images/demo/logger-disable-print.png" height=210 width=auto>
+
+<br>
 
 
 ## Tech
