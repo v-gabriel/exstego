@@ -11,11 +11,9 @@ A small steganography app that provides certain attack and embed methods.
 
 Demonstrates the flow of some attacks and the process of extracting and destroying data.
 
-**Steganography methods**
+<br>
 
-LSB steganography
- -
-
+**LSB steganography**
 
 Params:
 
@@ -33,9 +31,9 @@ Params:
 
 Percentage determens how much of the image will be altered, as well as the step of the scatter method.
 
+<br>
 
-METADATA steganography
- - 
+**METADATA steganography**
 
 Params:
 
@@ -45,32 +43,28 @@ All available tags can be found on the link: [exiv2 tags list](https://exiv2.org
 
 Library Github profile: [exiv2 github](https://github.com/Exiv2/exiv2)
 
+<br>
 
-BPCS steganography
- -
+**BPCS steganography**
 
 Params:
 
     Color channels: ['red', 'green', 'blue']
     Bit planes: [0,..., 8]
 
----
+<br>
 <br>
 
 **Attacks**
 
-Analytical
- -
-    
-Need both *stego* and *original* file, used for detecting:
+Analytical (need both *stego* and *original* file, used for detecting):
 
 - Compare bit planes of stego and original file
 - Compare histograms of stego and original file
 
-Stego oriented
- - 
+<br>
 
-Used extraction, detection or destruction:
+Stego oriented (used extraction, detection or destruction):
 
 - Split bit planes
 - Overlap bit planes
@@ -78,6 +72,7 @@ Used extraction, detection or destruction:
 - Destroy metadata information
 - Extract metadata
 
+<br>
 <br>
 
 **Embed methods**
@@ -91,7 +86,6 @@ Useful demo links:
   - [Exiv2 Github](https://github.com/Exiv2/exiv2)
   - [Exiv2 available tags list](https://exiv2.org/index.html)
 
----
 <br>
 
 BPCS planes overlap function was inspired by a solved problem:
@@ -103,23 +97,15 @@ Extended to choose custom planes to overlap.
 TODO
 
 
-## Tech Stack
-
-![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54) 
-
-![PyCharm](https://img.shields.io/badge/pycharm-143?style=for-the-badge&logo=pycharm&logoColor=black&color=black&labelColor=green)
+## Tech
 
 **Environment:** PyCharm
 
 **Languages:** KivyMD, Python v3.10
 
-<img src="images/tech-logos/logo-python" width="100" height="100">
-
-<img src="images/tech-logos/logo-kivymd" width="100" height="100">
-
-<img src="images/tech-logos/logo-pycharm" width="100" height="100">
-
-
+| PyCharm | KivyMD | Python v3.10 |
+| ------ | ------ | ------ |
+| <img src="./images/tech-logos/logo-pycharm.png" width=auto height=70> | <img src="./images/tech-logos/logo-kivymd.png" width=auto height=70> |  <img src="./images/tech-logos/logo-python.png" width=auto height=70> |
 
 
 ## Authors
