@@ -94,13 +94,44 @@ BPCS planes overlap function was inspired by a solved problem:
 
 ## Demo
 
-**Notes**
+General options. 
+
+Note that all the images, logs and extracted data is saved inside *./RESULTS/{identifer}* folder.
 
 Console logging can be disabled in code (./app/exstego.py):
 
-<img src="./demo/logger-disable-print.png" height=210 width=auto>
+<img src="./readme_resources/disable_logging.png" height=270 width=auto>
 
 <br>
+
+LSB - embedding and extracting. 
+
+Note that the order of the colors input is important (embedding/ extraction will insert/ read bits from that order).
+
+https://user-images.githubusercontent.com/72694712/184732263-c2992837-a545-42c1-99d7-b9aa07c8eae7.mp4
+
+https://user-images.githubusercontent.com/72694712/184732410-e2284480-0ffa-4f92-9c55-85f085e6e2f1.mp4
+
+Embedding, extracting and destroying metadata.
+
+https://user-images.githubusercontent.com/72694712/184732650-51d96f12-dd15-4ba6-91e3-6d0a4122d946.mp4
+
+https://user-images.githubusercontent.com/72694712/184732717-1fd1f56f-8ef9-4bb9-aa4b-1bce271550d6.mp4
+
+<br>
+
+Overlapping and extracting bit planes. 
+
+In this case the flag was hidden inside the first 3 bit planes. Spliting the bit planes also showed that something is present in those 3 bit planes, expecially the red channel.
+
+https://user-images.githubusercontent.com/72694712/184733207-a25a6bcb-14ca-412b-97cc-ee9f76d74fd1.mp4
+
+<br>
+
+Comparing histograms.
+
+https://user-images.githubusercontent.com/72694712/184734106-3754ce26-c29d-4eea-ba25-a69ddb8295d4.mp4
+
 
 
 ## Tech
