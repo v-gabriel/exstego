@@ -113,11 +113,11 @@ TODO
 
 **Languages:** KivyMD, Python v3.10
 
-<img src="images/tech-logos/logo-python" width="100" height="100">
+<img src="app/images/tech-logos/logo-python" width="100" height="100">
 
-<img src="images/tech-logos/logo-kivymd" width="100" height="100">
+<img src="app/images/tech-logos/logo-kivymd" width="100" height="100">
 
-<img src="images/tech-logos/logo-pycharm" width="100" height="100">
+<img src="app/images/tech-logos/logo-pycharm" width="100" height="100">
 
 
 
