@@ -10,6 +10,7 @@ A small steganography app that provides certain attack and embed methods.
 ## Features
 
 Demonstrates the flow of some attacks and the process of extracting and destroying data.
+All logs are saved in the folder relative to the app: *./RESULTS/...*
 
 <br>
 
