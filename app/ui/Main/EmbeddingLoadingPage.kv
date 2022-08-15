@@ -1,0 +1,34 @@
+<EmbeddingLoadingPage>:
+    name: "embeddingLoadingPage"
+    MDBoxLayout:
+        padding: 40
+        spacing: 40
+        orientation: "vertical"
+
+        # loading
+        MDBoxLayout:
+            orientation: "vertical"
+            spacing: 10
+            AnchorLayout:
+                size_hint: 1, 0.7
+                MDIcon:
+                    color: app.sea_green_color
+                    font_size: app.icon_large_size
+                    icon: "progress-clock"
+                    halign: "center"
+            AnchorLayout:
+                size_hint: 1, 0.15
+                MDLabel:
+                    markup: True
+                    font_size: app.title1_size
+                    halign: "center"
+                    valign: "center"
+                    text: "[b]Embedding... please wait[/b]"
+            AnchorLayout:
+                size_hint: 1, 0.15
+                MDLabel:
+                    markup: True
+                    font_size: app.title2_size
+                    halign: "center"
+                    valign: "center"
+                    text: "You will be redirected automatically"

@@ -1,0 +1,66 @@
+<CustomizeSelectedAttacksPage>:
+    name: "customizeSelectedAttacksPage"
+    MDBoxLayout:
+        padding: 40
+        spacing: 40
+        orientation: "vertical"
+
+        # wrapper
+        MDBoxLayout:
+            orientation: "vertical"
+            spacing: 20
+
+            # title
+            MDBoxLayout:
+                orientation: "horizontal"
+                size_hint: 1, 0.1
+                MDLabel:
+                    size_hint: 0.9, 1
+                    font_size: app.title1_size
+                    markup: True
+                    text: "Customize attacks"
+                MDIcon:
+                    color: app.imperial_red_color
+                    font_size: app.title1_size
+                    size_hint: 0.1, 1
+                    icon: "circle-edit-outline"
+                    halign: "right"
+
+            # content
+            MDBoxLayout:
+                size_hint: 1, 0.8
+                orientation: "vertical"
+                ScrollView:
+                    size: self.size
+                    do_scroll_x: False
+                    do_scroll_y: True
+
+                    # content - items
+                    GridLayout:
+                        id: attackOptionsContainer
+                        size_hint_y: None
+                        height: self.minimum_height
+                        width: self.minimum_width
+                        cols: 1
+                        padding: 50
+                        spacing: 20
+
+            # navigation
+            MDBoxLayout:
+                size_hint: 1, 0.1
+                AnchorLayout:
+                    anchor_x: "left"
+                    MDFlatButton:
+                        markup: True
+                        text: "[color=F0052C]Back[/color]"
+                        on_release: root.go_back()
+                        size: 30, 30
+                        size_hint: None, None
+                AnchorLayout:
+                    anchor_x: "right"
+                    MDRaisedButton:
+                        text: "Next"
+                        on_release: root.go_to_attacks_loading_page()
+                        size: 30, 30
+                        size_hint: None, None
+                        md_bg_color: app.imperial_red_color

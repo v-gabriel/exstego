@@ -1,0 +1,61 @@
+<HomePage>:
+    name: "homePage"
+    MDBoxLayout:
+        padding: 60
+        spacing: 60
+        orientation: 'vertical'
+
+        # title
+        MDBoxLayout:
+            orientation: "vertical"
+            size_hint: 1, 0.3
+            MDLabel:
+                font_size: app.main_title_size
+                markup: True
+                halign: "center"
+                valign: "center"
+                text: "[color=D8DAD3][b]EX[/b]stego[/color]"
+
+        # description
+        MDBoxLayout:
+            size_hint: 1, 0.5
+            orientation: "vertical"
+            AnchorLayout
+                size_hint: 1, 0.5
+                MDIcon:
+                    color: app.timberwolf_color
+                    font_size: app.title1_size
+                    font_size: app.icon_medium_size
+                    icon: "data-matrix"
+                    halign: "center"
+                    valign: "center"
+            AnchorLayout:
+                size_hint: 1, 0.5
+                MDLabel:
+                    id: homePageDescription
+                    markup: True
+                    text: "Error while loading description."
+                    valign: "center"
+                    halign: "center"
+
+        # navigation
+        MDBoxLayout:
+            size_hint: 1, 0.2
+            AnchorLayout:
+                anchor_x: "left"
+                MDRectangleFlatButton:
+                    text: "Attack"
+                    on_release: app.go_to_choose_attack_module_page()
+                    size: 30, 30
+                    size_hint: None, None
+                    text_color: app.imperial_red_color
+                    line_color: app.imperial_red_color
+            AnchorLayout:
+                anchor_x: "right"
+                MDRectangleFlatButton:
+                    text: "Embed"
+                    on_release: app.go_to_choose_embed_option_page()
+                    size: 30, 30
+                    size_hint: None, None
+                    text_color: app.sea_green_color
+                    line_color: app.sea_green_color

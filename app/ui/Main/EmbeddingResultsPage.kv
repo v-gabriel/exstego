@@ -1,0 +1,46 @@
+<EmbeddingResultsPage>:
+    name: "embeddingResultsPage"
+    MDBoxLayout:
+        padding: 40
+        spacing: 40
+        orientation: "vertical"
+
+        # loading
+        MDBoxLayout:
+            orientation: "vertical"
+            spacing: 10
+            size_hint: 1, 0.9
+            AnchorLayout:
+                size_hint: 1, 0.7
+                MDIcon:
+                    color: app.sea_green_color
+                    font_size: app.icon_large_size
+                    icon: "progress-check"
+                    halign: "center"
+            AnchorLayout:
+                size_hint: 1, 0.15
+                MDLabel:
+                    markup: True
+                    font_size: app.title1_size
+                    halign: "center"
+                    valign: "center"
+                    text: "[b]Jobs completed[/b]"
+            AnchorLayout:
+                size_hint: 1, 0.15
+                MDLabel:
+                    markup: True
+                    font_size: app.title2_size
+                    halign: "center"
+                    valign: "center"
+                    text: "Check logs and results in root folder"
+
+        # navigation
+        MDBoxLayout:
+            size_hint: 1, 0.1
+            AnchorLayout:
+                MDFlatButton:
+                    markup: True
+                    text: "[color=0EBE78]Exit[/color]"
+                    on_release: app.stop()
+                    size: 30, 30
+                    size_hint: None, None

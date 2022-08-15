@@ -1,0 +1,42 @@
+<AttacksResultsPage>:
+    name: "attacksResultsPage"
+    MDBoxLayout:
+        padding: 40
+        spacing: 40
+        orientation: "vertical"
+
+        # wrapper
+        MDBoxLayout:
+            orientation: "vertical"
+            spacing: 20
+
+            # title
+            MDBoxLayout:
+                id: title
+                orientation: "vertical"
+                size_hint: 1, 0.1
+                spacing: 20
+                MDLabel:
+                    font_size: app.title1_size
+                    markup: True
+                    text: "Results report"
+                    halign: "center"
+                    valign: "center"
+
+            # content
+            MDBoxLayout:
+                size_hint: 1, 0.9
+                orientation: "vertical"
+                VerticalScroll:
+                    size: self.size
+                    do_scroll_x: False
+                    do_scroll_y: True
+
+                    # content - items
+                    GridLayout:
+                        id: resultsContainer
+                        size_hint_y: None
+                        height: self.minimum_height
+                        width: self.minimum_width
+                        cols: 1
+

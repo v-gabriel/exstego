@@ -1,0 +1,167 @@
+<AttackBPCSTechniquePage>:
+    name: "attackBPCSTechniquePage"
+    MDBoxLayout:
+        padding: 40
+        spacing: 40
+        orientation: "vertical"
+
+        # wrapper
+        MDBoxLayout:
+            orientation: "vertical"
+            spacing: 20
+
+            # title
+            MDBoxLayout:
+                orientation: "horizontal"
+                size_hint: 1, 0.1
+                MDLabel:
+                    size_hint: 0.9, 1
+                    font_size: app.title1_size
+                    markup: True
+                    text: "BPCS steganographic technique"
+                MDIcon:
+                    color: app.imperial_red_color
+                    font_size: app.title1_size
+                    size_hint: 0.1, 1
+                    icon: "image-filter-center-focus-weak"
+                    halign: "right"
+
+            # content
+            MDBoxLayout:
+                size_hint: 1, 0.8
+                orientation: "horizontal"
+                spacing: 40
+
+                # content - left
+                MDBoxLayout:
+                    orientation: "vertical"
+
+                    # title
+                    MDLabel:
+                        markup: True
+                        text: "Available data"
+                        font_size: app.title2_size
+                        size_hint_y: None
+                        height: 70
+
+                    # content - items
+                    ScrollView:
+                        size: self.size
+                        do_scroll_x: False
+                        do_scroll_y: True
+                        GridLayout:
+                            size_hint_y: None
+                            height: self.minimum_height
+                            width: self.minimum_width
+                            cols: 1
+                            spacing: 20
+
+                            # content - item
+                            MDBoxLayout:
+                                orientation: "vertical"
+                                size_hint_y: None
+                                height: 80
+                                MDLabel:
+                                    size_hint: 1, 0.5
+                                    markup: True
+                                    text: "[color=D8DAD3]Select stego file[/color]"
+                                MDBoxLayout:
+                                    padding: [15, 0, 0, 0]
+                                    size_hint: 1, 0.5
+                                    canvas:
+                                        Color:
+                                            rgba: app.timberwolf_color
+                                        Line:
+                                            width: 0.5
+                                            rounded_rectangle: (self.x, self.y, self.width, self.height, 3)
+                                    orientation: "horizontal"
+                                    MDLabel:
+                                        id: selectedStegoFileName
+                                        size_hint: 0.8, 1
+                                        markup: True
+                                        shorten: True
+                                        text: 'No file selected...'
+                                        halign: "left"
+                                    AnchorLayout:
+                                        size_hint: 0.2, 1
+                                        anchor_x: "right"
+                                        MDIconButton:
+                                            icon: "file-outline"
+                                            on_release: app.select_stego_file(self, root)
+
+                            # content - item
+                            MDBoxLayout:
+                                orientation: "vertical"
+                                size_hint_y: None
+                                height: 80
+                                MDLabel:
+                                    size_hint: 1, 0.5
+                                    markup: True
+                                    text: "[color=D8DAD3]Select original file[/color]"
+                                MDBoxLayout:
+                                    padding: [15, 0, 0, 0]
+                                    size_hint: 1, 0.5
+                                    canvas:
+                                        Color:
+                                            rgba: app.timberwolf_color
+                                        Line:
+                                            width: 0.5
+                                            rounded_rectangle: (self.x, self.y, self.width, self.height, 3)
+                                    orientation: "horizontal"
+                                    MDLabel:
+                                        id: selectedOriginalFileName
+                                        size_hint: 0.8, 1
+                                        markup: True
+                                        shorten: True
+                                        text: 'No file selected...'
+                                        halign: "left"
+                                    AnchorLayout:
+                                        size_hint: 0.2, 1
+                                        anchor_x: "right"
+                                        MDIconButton:
+                                            icon: "file-outline"
+                                            on_release: app.select_original_file(self, root)
+
+                # content - right
+                BoxLayout:
+                    orientation: "vertical"
+
+                    # title
+                    MDLabel:
+                        markup: True
+                        text: "Attacks"
+                        font_size: app.title2_size
+                        size_hint_y: None
+                        height: 70
+
+                    # content - items
+                    ScrollView:
+                        size: self.size
+                        do_scroll_x: False
+                        do_scroll_y: True
+                        MDList:
+                            id: attacksList
+                            size_hint_y: None
+                            height: self.minimum_height
+                            width: self.minimum_width
+                            cols: 1
+
+            # navigation
+            MDBoxLayout:
+                size_hint: 1, 0.1
+                AnchorLayout:
+                    anchor_x: "left"
+                    MDFlatButton:
+                        markup: True
+                        text: "[color=F0052C]Back[/color]"
+                        on_release: root.go_back()
+                        size: 30, 30
+                        size_hint: None, None
+                AnchorLayout:
+                    anchor_x: "right"
+                    MDRaisedButton:
+                        text: "Next"
+                        on_release: app.go_to_customize_attacks_page(root.name)
+                        size: 30, 30
+                        size_hint: None, None
+                        md_bg_color: app.imperial_red_color

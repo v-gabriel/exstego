@@ -1,0 +1,85 @@
+<AttackSpecificTechniquePage>:
+    name: "attackSpecificTechniquePage"
+    MDBoxLayout:
+        padding: 40
+        spacing: 40
+        orientation: "vertical"
+
+        # title
+        MDBoxLayout:
+            orientation: "horizontal"
+            size_hint: 1, 0.1
+            MDLabel:
+                size_hint: 0.9, 1
+                font_size: app.title1_size
+                markup: True
+                text: "Attack specific techniques"
+            MDIcon:
+                color: app.imperial_red_color
+                font_size: app.title1_size
+                size_hint: 0.1, 1
+                icon: "image-filter-center-focus-weak"
+                halign: "right"
+
+        # techniques, left
+        MDBoxLayout:
+            orientation: "horizontal"
+            spacing: 40
+            size_hint: 1, 0.8
+            AnchorLayout:
+                BoxLayout:
+                    orientation: "vertical"
+                    spacing: 10
+                    MDLabel:
+                        size_hint: 1, 0.1
+                        markup: True
+                        text: "Select steganographic technique"
+                        font_size: app.title2_size
+                    ScrollView:
+                        size_hint: 1, 0.9
+                        do_scroll_x: False
+                        do_scroll_y: True
+                        MDList:
+                            id: specificTechniquesList
+
+            # description, right
+            AnchorLayout:
+                MDBoxLayout:
+                    spacing: 30
+                    orientation: "vertical"
+                    MDLabel:
+                        size_hint: 1, 0.1
+                        markup: True
+                        text: "Description"
+                        font_size: app.title2_size
+                    MDGridLayout:
+                        cols: 1
+                        size_hint: 1, 0.9
+                        MDLabel:
+                            id: specificTechniqueInfo
+                            line_height: app.description_line_height
+                            text_size: self.size
+                            halign:'left'
+                            valign:'top'
+                            markup: True
+                            text: "No technique selected."
+
+        # navigation
+        MDBoxLayout:
+            size_hint: 1, 0.1
+            AnchorLayout:
+                anchor_x: "left"
+                MDFlatButton:
+                    markup: True
+                    text: "[color=F0052C]Back[/color]"
+                    on_release: root.go_back()
+                    size: 30, 30
+                    size_hint: None, None
+            AnchorLayout:
+                anchor_x: "right"
+                MDRaisedButton:
+                    text: "Next"
+                    on_release: root.go_to_attack_technique_page()
+                    size: 30, 30
+                    size_hint: None, None
+                    md_bg_color: app.imperial_red_color

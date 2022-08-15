@@ -1,0 +1,99 @@
+<EmbedLSBPage>:
+    name: "embedLSBPage"
+    MDBoxLayout:
+        padding: 40
+        spacing: 40
+        orientation: "vertical"
+
+        # wrapper
+        MDBoxLayout:
+            orientation: "vertical"
+            spacing: 20
+
+            # title
+            MDBoxLayout:
+                orientation: "horizontal"
+                size_hint: 1, 0.1
+                MDLabel:
+                    size_hint: 0.9, 1
+                    font_size: app.title1_size
+                    markup: True
+                    text: "Options"
+                MDIcon:
+                    color: app.sea_green_color
+                    font_size: app.title1_size
+                    size_hint: 0.1, 1
+                    icon: "circle-edit-outline"
+                    halign: "right"
+
+            # content
+            MDBoxLayout:
+                size_hint: 1, 0.8
+                orientation: "vertical"
+                ScrollView:
+                    size: self.size
+                    do_scroll_x: False
+                    do_scroll_y: True
+
+                    # content - items
+                    GridLayout:
+                        id: embedParamsContainer
+                        size_hint_y: None
+                        height: self.minimum_height
+                        width: self.minimum_width
+                        cols: 1
+                        padding: 50
+                        spacing: 20
+
+                        # content - item
+                        MDBoxLayout:
+                            orientation: "vertical"
+                            size_hint_y: None
+                            height: 80
+                            MDLabel:
+                                size_hint: 1, 0.5
+                                markup: True
+                                text: "[color=D8DAD3]Select file[/color]"
+                            MDBoxLayout:
+                                padding: [15, 0, 0, 0]
+                                size_hint: 1, 0.5
+                                canvas:
+                                    Color:
+                                        rgba: app.timberwolf_color
+                                    Line:
+                                        width: 0.5
+                                        rounded_rectangle: (self.x, self.y, self.width, self.height, 3)
+                                orientation: "horizontal"
+                                MDLabel:
+                                    id: selectedFileName
+                                    size_hint: 0.8, 1
+                                    markup: True
+                                    shorten: True
+                                    text: 'No file selected...'
+                                    halign: "left"
+                                AnchorLayout:
+                                    size_hint: 0.2, 1
+                                    anchor_x: "right"
+                                    MDIconButton:
+                                        icon: "file-outline"
+                                        on_release: root.select_file(root)
+
+            # navigation
+            MDBoxLayout:
+                size_hint: 1, 0.1
+                AnchorLayout:
+                    anchor_x: "left"
+                    MDFlatButton:
+                        markup: True
+                        text: "[color=0EBE78]Back[/color]"
+                        on_release: root.go_back()
+                        size: 30, 30
+                        size_hint: None, None
+                AnchorLayout:
+                    anchor_x: "right"
+                    MDRaisedButton:
+                        text: "Next"
+                        on_release: root.go_to_embedding_loading()
+                        size: 30, 30
+                        size_hint: None, None
+                        md_bg_color: app.sea_green_color
