@@ -1,4 +1,0 @@
-#[Log]#
-[LSBHandler]
-Performing LSB extraction.
-

@@ -91,7 +91,6 @@ Useful demo links:
 
 BPCS planes overlap function was inspired by a solved problem:
 - [Stackoverflow - Python image manipulation](https://stackoverflow.com/questions/58194992/python-image-manipulation-using-pillsb)
-Extended to choose custom planes to overlap.
 
 ## Demo
 
@@ -99,7 +98,7 @@ Extended to choose custom planes to overlap.
 
 Console logging can be disabled in code (./app/exstego.py):
 
-<img src="images/demo/logger-disable-print.png" height=210 width=auto>
+<img src="./demo/logger-disable-print.png" height=210 width=auto>
 
 <br>
 
@@ -112,7 +111,7 @@ Console logging can be disabled in code (./app/exstego.py):
 
 | PyCharm | KivyMD | Python v3.10 |
 | ------ | ------ | ------ |
-| <img src="./images/tech-logos/logo-pycharm.png" width=auto height=70> | <img src="./images/tech-logos/logo-kivymd.png" width=auto height=70> |  <img src="./images/tech-logos/logo-python.png" width=auto height=70> |
+| <img src="./readme_resources/tech-logos/logo-pycharm.png" width=auto height=70> | <img src="./readme_resources/tech-logos/logo-kivymd.png" width=auto height=70> |  <img src="./readme_resources/tech-logos/logo-python.png" width=auto height=70> |
 
 
 ## Authors
