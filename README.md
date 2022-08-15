@@ -10,7 +10,12 @@ A small steganography app that provides certain attack and embed methods.
 ## Features
 
 Demonstrates the flow of some attacks and the process of extracting and destroying data.
-All logs are saved in the folder relative to the app: *./RESULTS/...*
+
+Logs and results are saved in the folder relative to the app: *./RESULTS/...*
+
+Console logging can be disabled in code:
+
+<img src="images/demo/logger-disable-print.png" height=auto width=200>
 
 <br>
 
