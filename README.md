@@ -42,7 +42,7 @@ Params:
 
 All available tags can be found on the link: [exiv2 tags list](https://exiv2.org/index.html)
 
-Library Github profile: [exiv2 github](https://github.com/Exiv2/exiv2)
+Github: [exiv2 github](https://github.com/Exiv2/exiv2)
 
 <br>
 
