@@ -109,7 +109,7 @@ class LSBHandler:
                 b_message += b_message_fill
 
         try:
-            MessageHelper.log(f"Performing LSB embedding for {str(embed_percentage)}.", self.__identifier)
+            MessageHelper.log(f"Performing LSB embedding for {str(embed_percentage*100)}%...", self.__identifier)
 
             array = self.__perform_stegging(b_message, embed_option, colors_to_embed, embed_percentage)
             self.__array = deepcopy(array)
@@ -138,7 +138,7 @@ class LSBHandler:
                         colors_to_read=None,
                         embed_option=LSBEmbedPixelOption.SEQUENTIAL.value,
                         percentage=None):
-        MessageHelper.log(f"Performing LSB extraction.", self.__identifier)
+        MessageHelper.log(f"Performing LSB extraction...", self.__identifier)
         try:
             if colors_to_read is None:
                 colors_to_read = [ColorType.RED.value, ColorType.GREEN.value, ColorType.BLUE.value]
@@ -203,7 +203,7 @@ class LSBHandler:
                         embed_option=LSBEmbedPixelOption.SEQUENTIAL.value,
                         colors_to_embed=None,
                         destroy_percentage=0.5):
-        MessageHelper.log(f"Performing LSB destruction for {str(destroy_percentage)}.", self.__identifier)
+        MessageHelper.log(f"Performing LSB destruction for {str(destroy_percentage*100)}%.", self.__identifier)
         try:
             if destroy_percentage > 1:
                 destroy_percentage = 1

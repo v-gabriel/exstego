@@ -102,6 +102,10 @@ class MetadataHandler:
 
     def read_tags(self, keys_to_read=None):
         self.results.original_tags = self.__read_tags(keys_to_read=keys_to_read)
+        self.__save_image(
+            MetadataFileChangeType.ORIGINAL.value,
+            self.__image
+        )
 
     def __read_tags(self, image=None, keys_to_read=None, file_type=MetadataFileChangeType.ORIGINAL.value):
         try:
@@ -183,6 +187,7 @@ class MetadataHandler:
             if image is None:
                 with open(fr'{self.__src}', 'rb+') as f:
                     image = pyexiv2.ImageData(f.read())
+                    change_type = MetadataFileChangeType.ORIGINAL.value
 
             os.makedirs(self.folder, exist_ok=True)
 
@@ -191,7 +196,7 @@ class MetadataHandler:
                 newFile.write(image.get_bytes())
 
             tags_dict = self.__read_tags(image)
-            text_src = f'{self.folder}/tags.txt'
+            text_src = f'{self.folder}/{change_type}_tags.txt'
 
             tags = ''
             for e in MetadataTypes:

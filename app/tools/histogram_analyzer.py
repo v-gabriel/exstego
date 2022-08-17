@@ -64,6 +64,12 @@ class HistogramAnalyzer:
 
             self.__results.equality_percentage = cv2.compareHist(histOriginalImage, histStegoImage, cv2.HISTCMP_CORREL)
 
+            message = f"Equality percentage: {self.__results.equality_percentage}%"
+            text_src = f"{self.folder}/equality_percentage.txt"
+            text_file = open(text_src, "w", encoding="utf-8")
+            n = text_file.write(message)
+            text_file.close()
+
             MessageHelper.success("Histograms compared successfully.", self.__identifier)
         except Exception as exception:
             MessageHelper.error("Error while comparing histograms.", self.__identifier, exception)

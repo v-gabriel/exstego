@@ -2008,7 +2008,10 @@ if __name__ == "__main__":
 
     # endregion
 
-    ExStegoApp().run()
+    try:
+        ExStegoApp().run()
+    except Exception as exception:
+        MessageHelper.error("Fatal app error.", "[MainApp]", exception)
 
     MessageHelper.save_logs()
 
