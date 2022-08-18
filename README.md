@@ -19,7 +19,7 @@ Logs and results are saved in the folder relative to the app: *./RESULTS/...*
 Params:
 
 
-    Color channels: ['red', 'green', ['blue']
+    Color channels: ['red', 'green', 'blue']
     Embed methods: ['Scatter', 'Sequential']
     Percentage: [0,..., 1]
 
