@@ -89,10 +89,6 @@ if __name__ == "__main__":
     Builder.load_file('ui/Main/EmbeddingResultsPage.kv')
     Builder.load_file('ui/Main/EmbeddingErrorPage.kv')
 
-    LabelBase.register(name="Montserrat",
-                       fn_regular="./resources/Montserrat-Regular.ttf")
-
-
     class WindowManager(ScreenManager):
         def __init__(self, **kwargs):
             super().__init__(**kwargs)
@@ -1495,7 +1491,7 @@ if __name__ == "__main__":
             # logger can be disabled
             # MessageHelper.to_print = False
             # if the app is run using a environment supporting termcolor library (like PyCharm), set to True
-            # MessageHelper.is_colored_logger = True
+            MessageHelper.is_colored_logger = True
 
         def __init_variables(self):
             self.__setup_folder_name()

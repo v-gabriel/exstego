@@ -22,7 +22,7 @@ class AttackOption(Enum):
     LSB_EXTRACTION = "Extract data hidden in LSBs"
     HISTOGRAM_ANALYSIS = "Compare histograms of two images"
 
-    METADATA_DESTRUCTION = "Destroy all metadata information"
+    METADATA_DESTRUCTION = "Destroy all metadata"
     METADATA_EXTRACTION = "Extract metadata"
 
 
@@ -33,7 +33,7 @@ class ColorType(Enum):
 
 
 class AttackModule(Enum):
-    SPECIFIC = 'Specific attacks'
+    SPECIFIC = 'Attack specific techniques'
     CUSTOM = 'Customize all available attacks'
 
     # TODO: update desc
@@ -181,7 +181,7 @@ class MetadataHandlerResults:
 # region ui handling
 class Text(Enum):
     __backslash = '\n'
-    HOME_PAGE_DESCRIPTION = f"Embed data or attack files trough available methods.\n" \
+    HOME_PAGE_DESCRIPTION = f"Embed data or attack files through available methods.\n" \
                             f"Attacks can analyze, extract or destroy data.\n" \
                             f"Data and logs are saved relative to the root folder of the app: [i]./RESULTS/…[/i]\n" \
 
