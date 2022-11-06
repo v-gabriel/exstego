@@ -1,11 +1,8 @@
-
-[![Typing SVG](https://readme-typing-svg.herokuapp.com?font=Source+Code+Pro&duration=7000&pause=1000&color=478BC2&vCenter=true&width=435&lines=%5B01101000+01101001%5D)](https://git.io/typing-svg)
-
 # Exstego
 
 A small steganography app that provides certain attack and embed methods.
 
-
+<br>
 
 ## Features
 
@@ -13,6 +10,7 @@ Demonstrates the flow of some attacks and the process of extracting and destroyi
 
 Logs and results are saved in the folder relative to the app: *./RESULTS/...*
 
+<br>
 
 **LSB steganography**
 
@@ -23,7 +21,6 @@ Params:
     Embed methods: ['Scatter', 'Sequential']
     Percentage: [0,..., 1]
 
-    
 
 | Method | Description |
 | ------ | ------ |
@@ -54,7 +51,6 @@ Params:
     Bit planes: [0,..., 8]
 
 <br>
-<br>
 
 **Attacks**
 
@@ -74,12 +70,12 @@ Stego oriented (used extraction, detection or destruction):
 - Extract metadata
 
 <br>
-<br>
 
 **Embed methods**
 - LSB steganography
 - METADATA steganography
 
+<br>
 
 ## Appendix
 
@@ -92,11 +88,11 @@ Useful demo links:
 BPCS planes overlap function was inspired by a solved problem:
 - [Stackoverflow - Python image manipulation](https://stackoverflow.com/questions/58194992/python-image-manipulation-using-pillsb)
 
-## Demo
+<br>
 
-General options. 
+## Demo 
 
-Note that all the images, logs and extracted data is saved inside *./RESULTS/{identifer}* folder.
+All the images, logs and extracted data is saved inside *./RESULTS/{identifer}* folder.
 
 Console logging can be disabled in code (./app/exstego.py):
 
@@ -104,9 +100,9 @@ Console logging can be disabled in code (./app/exstego.py):
 
 <br>
 
-LSB - embedding and extracting. 
+**LSB - embedding and extracting**
 
-Note that the order of the colors input is important (embedding/ extraction will insert/ read bits from that order).
+The order of the colors input is important (embedding/ extraction will insert/ read bits from that order).
 
 https://user-images.githubusercontent.com/72694712/184732263-c2992837-a545-42c1-99d7-b9aa07c8eae7.mp4
 
@@ -114,7 +110,7 @@ https://user-images.githubusercontent.com/72694712/184732410-e2284480-0ffa-4f92-
 
 <br>
 
-Embedding, extracting and destroying metadata.
+**Embedding, extracting and destroying metadata**
 
 https://user-images.githubusercontent.com/72694712/184732650-51d96f12-dd15-4ba6-91e3-6d0a4122d946.mp4
 
@@ -122,19 +118,19 @@ https://user-images.githubusercontent.com/72694712/184732717-1fd1f56f-8ef9-4bb9-
 
 <br>
 
-Overlapping and extracting bit planes. 
+**Overlapping and extracting bit planes**
 
-In this case the flag was hidden inside the first 3 bit planes. Spliting the bit planes also showed that something is present in those 3 bit planes, expecially the red channel.
+In this case the flag was hidden inside the first 3 bit planes of the red channel.
 
 https://user-images.githubusercontent.com/72694712/184733207-a25a6bcb-14ca-412b-97cc-ee9f76d74fd1.mp4
 
 <br>
 
-Comparing histograms.
+**Comparing histograms**
 
 https://user-images.githubusercontent.com/72694712/184734106-3754ce26-c29d-4eea-ba25-a69ddb8295d4.mp4
 
-
+<br>
 
 ## Tech
 
@@ -144,8 +140,9 @@ https://user-images.githubusercontent.com/72694712/184734106-3754ce26-c29d-4eea-
 
 | PyCharm | KivyMD | Python v3.10 |
 | ------ | ------ | ------ |
-| <img src="./readme_resources/tech-logos/logo-pycharm.png" width=auto height=70> | <img src="./readme_resources/tech-logos/logo-kivymd.png" width=auto height=70> |  <img src="./readme_resources/tech-logos/logo-python.png" width=auto height=70> |
+| <div align="center"><img align="center" src="./readme_resources/tech-logos/logo-pycharm.png" width=auto height=70></div> | <div align="center"><img align="center" src="./readme_resources/tech-logos/logo-kivymd.png" width=auto height=70></div>|  <div align="center"><img align="center" src="./readme_resources/tech-logos/logo-python.png" width=auto height=70></div> |
 
+<br>
 
 ## Authors
 
